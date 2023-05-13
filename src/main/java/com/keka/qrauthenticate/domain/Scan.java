@@ -1,5 +1,6 @@
 package com.keka.qrauthenticate.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
@@ -23,6 +24,8 @@ public class Scan {
     private UUID id;
 
     @ManyToOne
+    @ToString.Exclude
+    @JsonIgnore
     private Item item;
 
     @Column(name = "scanned_at", nullable = false)

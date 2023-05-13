@@ -1,5 +1,6 @@
 package com.keka.qrauthenticate.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
@@ -35,6 +36,7 @@ public class Item {
     private List<Scan> scans = new ArrayList<>();
 
     @Column(name = "qr_code")
+    @ToString.Exclude
     private String qcode;
 
     @CreatedDate
