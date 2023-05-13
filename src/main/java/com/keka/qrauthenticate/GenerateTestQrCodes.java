@@ -1,7 +1,7 @@
 package com.keka.qrauthenticate;
 
 import com.keka.qrauthenticate.config.AppConfig;
-import com.keka.qrauthenticate.repository.ProductRepository;
+import com.keka.qrauthenticate.repository.ItemRepository;
 import com.keka.qrauthenticate.service.QRCodeGenerationService;
 import com.keka.qrauthenticate.service.QRCodeStorageService;
 import lombok.extern.slf4j.Slf4j;
@@ -25,7 +25,7 @@ public class GenerateTestQrCodes implements CommandLineRunner {
     private QRCodeStorageService qrCodeStorageService;
 
     @Autowired
-    private ProductRepository productRepository;
+    private ItemRepository itemRepository;
 
     @Autowired
     private AppConfig appConfig;
@@ -33,7 +33,7 @@ public class GenerateTestQrCodes implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         deleteQrCodesFolder();
-        productRepository.deleteAll();
+        itemRepository.deleteAll();
 
         String id1 = UUID.randomUUID().toString();
         String id2 = UUID.randomUUID().toString();

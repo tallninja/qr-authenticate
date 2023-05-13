@@ -1,11 +1,9 @@
 package com.keka.qrauthenticate.dto;
 
-import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
 @Data
-public class CreateProductDto {
-    @NotBlank
+public class CreateItemDto {
     private String title;
 
     private String description;

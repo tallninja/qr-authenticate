@@ -7,34 +7,41 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
 @Builder
 @Getter
 @Setter
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "products")
-@EntityListeners({AuditingEntityListener.class, ProductAuditListener.class})
-public class Product {
+@Table(name = "scans")
+@EntityListeners({AuditingEntityListener.class, ItemAuditListener.class})
+public class Item {
     @Id @GeneratedValue
     private UUID id;
 
-    @Column(name = "title", nullable = false)
+    @Column(name = "title")
     private String title;
 
     @Column(name = "description")
     private String description;
 
+    @OneToMany(mappedBy = "item", cascade = CascadeType.ALL, orphanRemoval = true)
+    @ToString.Exclude
+    private List<Scan> scans = new ArrayList<>();
+
     @Column(name = "qr_code")
-    private String qrCode;
+    private String qcode;
 
     @CreatedDate
-    @Column(name = "created_at")
+    @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
     @LastModifiedDate
-    @Column(name = "updated_at")
-    private LocalDateTime updatedAt;
+    @Column(name = "updated_at", nullable = false)
+    private LocalDateTime updateAt;
 }

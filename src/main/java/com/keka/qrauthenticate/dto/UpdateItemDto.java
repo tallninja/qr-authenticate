@@ -4,7 +4,7 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
 @Data
-public class UpdateProductDto {
+public class UpdateItemDto {
     @NotBlank
     private String title;
 

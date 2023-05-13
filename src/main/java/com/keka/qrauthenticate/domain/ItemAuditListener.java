@@ -5,17 +5,17 @@ import jakarta.persistence.PostRemove;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class ProductAuditListener {
+public class ItemAuditListener {
 
     private final QRCodeStorageService qrCodeStorageService;
 
-    public ProductAuditListener(QRCodeStorageService qrCodeStorageService) {
+    public ItemAuditListener(QRCodeStorageService qrCodeStorageService) {
         this.qrCodeStorageService = qrCodeStorageService;
     }
 
     @PostRemove
-    private void deleteQrCodeFromStorage(Product product) throws Exception {
-        qrCodeStorageService.delete(product.getQrCode());
-        log.info("Deleted product " + product.getId());
+    private void deleteQrCodeFromStorage(Item item) throws Exception {
+        qrCodeStorageService.delete(item.getQcode());
+        log.info("Deleted product " + item.getId());
     }
 }
